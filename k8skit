@@ -1,0 +1,13 @@
+#!/usr/bin/env python3.6
+import fire
+
+class K8skit(object):
+
+    def init(self):
+        return "init function" 
+
+    def server(self):
+        return "server for node install"
+
+if __name__ == "__main__":
+    fire.Fire(K8skit)
