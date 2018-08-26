@@ -1,10 +1,28 @@
 #!/usr/bin/env python3.6
 import fire
+from   functools import partial
+from fabric import Config
+from fabric import Connection
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+custom_config = Config(overrides={"run": {"warn": True}})
+CustomConnection = partial(Connection, config=custom_config)
+
+
 
 class K8skit(object):
 
     def init(self):
+        logging.info("开始连接")
+        with CustomConnection('192.168.219.130') as sshconn:
+            result = sshconn.run('ipii a', hide=True)
+        logging.info("处理完成")
         return "init function" 
+
+            
+        
 
     def server(self):
         return "server for node install"
